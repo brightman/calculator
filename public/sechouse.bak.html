@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二手房交易税率计算器</title>
+    <script src="angular.min.js"></script>
+    <script src="sechouse.js"></script>
+    <!-- Loading Bootstrap -->
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle navbar-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">计算器之家</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+        <a href="/salary.html">工资计算器</a>
+        </li>
+        <li class="active">
+        <a href="/sechouse.html">二手房交易税率计算器</a
+        </li>
+       <li>
+        <a href="/supermarket.html">超市计算器</a>
+        </li>
+        <li>
+        <a href="/oil.html">油耗计算器</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        <a href="#">关于</a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </nav>
+
+
+  <div class="container" ng-controller="SechouseCtrl">
+    <h3>二手房交易税率计算器</h3>
+    <table class="table table-bordered">
+      <tr>
+        <td>房屋面积</td>
+        <td>
+          <input type="number" ng-model="area">平米
+        </td>
+      </tr>
+      <tr>
+        <td>房屋总价</td>
+        <td>
+          <input type="number" ng-model="total">万元
+        </td>
+      </tr>
+      <tr>
+        <td>房产购置满5年</td>
+        <td><input type="radio" ng-model="full5" value="true">是<input type="radio" ng-model="full5">否 </td>
+      </tr>
+      <tr>
+        <td>买房首次购房</td>
+        <td><input type="radio" ng-model="firstbuy" value="true">是<input type="radio" ng-model="firstbuy">否 </td>
+      </tr>
+      <tr>
+        <td>卖方唯一住房</td>
+        <td><input type="radio" ng-model="only1" value="true">是<input type="radio" ng-model="only1">否 </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit" class="btn btn-primary btn-block" ng-click='sechousetax()'> 计算</button></td>
+    </table>
+    <hr>
+    <h3>买卖双方的主要税费</h3>
+    <table class="table table-bordered">
+      <tr>
+        <td></td>
+        <td></td>
+        <td>卖方</td>
+        <td>买方</td>
+        <td class="col-sm-4">说明</td>
+      </tr>
+      <tr>
+        <td>合计</td>
+        <td>{{tax.total/10000}}万元</td>
+        <td>{{seller.total/10000}}万元</td>
+        <td>{{buyer.total/10000}}万元</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>契税</td>
+        <td>{{tax.qishui/10000}}万元</td>
+        <td>0万元</td>
+        <td>{{buyer.qishui/10000}}万元</td>
+        <td>买方缴纳。首次购买唯一住房90㎡以下1%；90㎡-140㎡1.5%；140㎡以上3%。
+        购买非家庭唯一住房 3%</td>
+      </tr>
+      <tr>
+        <td>营业税</td>
+        <td>{{tax.yinyeshui/10000}}万元</td>
+        <td>{{seller.yinyeshui/10000}}万元</td>
+        <td>0万元</td>
+        <td>卖方缴纳。税率5.6%
+          不满5年全额征收
+          满五年普通住宅，免征。
+        非普通住房全额或差额征</td>
+      </tr>
+      <tr>
+        <td>个人所得税</td>
+        <td>{{tax.gerenshuode/10000}}万元</td>
+        <td>{{seller.gerenshuode/10000}}万元</td>
+        <td>0万元</td>
+        <td>卖方缴纳。
+          出售满5年以上并且是家庭唯一住房，免征。
+        出售未满5年住房或满5年非唯一住宅，核定征收税率暂按1%或差额20%执行。</td>
+      </tr>
+      <tr>
+        <td>印花税</td>
+        <td>0元</td>
+        <td>0元</td>
+        <td>0元</td>
+        <td>目前免征</td>
+      </tr>
+   </table>
+  </div><!-- 2house calculator -->
+
+</body>
+</html>

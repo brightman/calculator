@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超市计算器</title>
+    <script src="angular.min.js"></script>
+    <!-- Loading Bootstrap -->
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="calculator.css" rel="stylesheet">
+    <script type='text/javascript'>
+      $(document).ready(function() {
+       $('[data-toggle=offcanvas]').click(function() {
+         $('.row-offcanvas').toggleClass('active');
+       });
+     });
+    </script>
+
+  </head>
+  <body>
+    <div class="page-container">
+
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">计算器之家</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row row-offcanvas row-offcanvas-left">
+          <!-- sidebar -->
+          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li><a href="/salary.html">工资计算器</a></li>
+              <li><a href="/sechouse.html">二手房交易税率</a></li>
+              <li><a href="/supermarket.html">超市计算器</a></li>
+              <li><a href="/oil.html">油耗计算器</a></li>
+              <li><a href="/index.html">关于</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-12 col-sm-9" ng-controller="SupermarketCtrl">
+            <h3>超市计算器</h3>
+            <table class="table">
+              <tr>
+                <td>原价</td>
+                <td>数量</td>
+                <td>单价</td>
+              </tr>
+              <tr>
+                <td><input type="number" size="4" ng-model="a1"> / </td>
+                <td><input type="number" size="4" ng-model="a2"> = </td>
+                <td><input type="number" size="4" value="{{a1/a2}}"></td>
+              </tr>
+              <tr>
+                <td><input type="number" size="4" ng-model="b1"> / </td>
+                <td><input type="number" size="4" ng-model="b2"> = </td>
+                <td><input type="number" size="4" value="{{b1/b2}}"></td>
+              </tr>
+              <tr>
+                <td><input type="number" size="4" ng-model="c1"> / </td>
+                <td><input type="number" size="4" ng-model="c2"> = </td>
+                <td><input type="number" size="4" value="{{c1/c2}}"></td>
+              </tr>
+            </table>
+          </div><!-- supermarket calculator -->
+        </div><!--/.row-->
+      </div><!--/.container-->
+    </div><!--/.page-container-->
+
+
+
+    <script>
+      function SupermarketCtrl($scope){
+      }
+    </script>
+  </body>
+</html>

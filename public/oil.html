@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh" ng-app="OilModule">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>油耗计算器</title>
+    <script src="angular.min.js"></script>
+    <script src="oil.js"></script>
+    <!-- Loading Bootstrap -->
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="calculator.css" rel="stylesheet">
+    <script type='text/javascript'>
+      $(document).ready(function() {
+       $('[data-toggle=offcanvas]').click(function() {
+         $('.row-offcanvas').toggleClass('active');
+       });
+     });
+    </script>
+</head>
+<body>
+  <div class="page-container">
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">计算器之家</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <!-- sidebar -->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <ul class="nav">
+            <li><a href="/salary.html">工资计算器</a></li>
+            <li><a href="/sechouse.html">二手房交易税率</a></li>
+            <li><a href="/supermarket.html">超市计算器</a></li>
+            <li><a href="/oil.html">油耗计算器</a></li>
+            <li><a href="/index.html">关于</a></li>
+          </ul>
+        </div>
+
+
+
+
+        <div class="col-xs-12 col-sm-9" ng-controller="OilCtrl">
+          <h3>油耗计算器</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <button type="button" class="btn btn-default btn-sm" ng-click='toggleMenu()' ng-show='showlist'>
+                <span class="glyphicon glyphicon-plus"></span> 记一笔
+              </button>
+              <button type="button" class="btn btn-default btn-sm" ng-click='toggleMenu()' ng-hide='showlist'>
+                <span class="glyphicon glyphicon-list"></span> 油耗统计
+              </button>
+            </div>
+
+            <div class="panel-body" ng-hide='showlist'>
+              <p>通过两次加油间隔行驶的公里数计算出每百公里油耗</p>
+              <form name="addItemForm" class="form-horizontal" ng-submit="addItem()">
+                <div class="input-group">
+                  <span class="input-group-addon">当前里程</span>
+                  <input type="number" class="form-control" ng-model="Item.mileage" placeholder="1000" required>
+                  <span class="input-group-addon">km</span>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">本次加油</span>
+                  <input type="number" class="form-control" ng-model="Item.amount" placeholder="50" required>
+                  <span class="input-group-addon">L</span>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">单价每升</span>
+                  <input type="number" class="form-control" ng-model="Item.price" placeholder="7.80" required>
+                  <span class="input-group-addon">元/L</span>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">燃油类型</span>
+                  <select ng-model="Item.oiltype" required>
+                    <option selected="selected">90号</option>
+                    <option>93号</option>
+                    <option>95号</option>
+                    <option>0号柴油</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled='!addItemForm.$valid'>保存</button>
+              </form>
+            </div>
+            <div class="list-group" ng-show='showlist'>
+              <a href="#" class="list-group-item" ng-repeat="r in records">
+                <h4 class="list-group-item-heading">{{r.createdAt | date:'yyyy-MM-dd'}} <span class="glyphicon glyphicon-remove" ng-if="$index==0" ng-click="removeItem()"></span></h4>
+                <p class="list-group-item-text">里程{{r.mileage}}km 加油{{r.amount}}L 花费{{r.price * r.amount}}元 单价{{r.price}}元
+                <small class="text-primary pull-right">{{r.cph}} L/100km</small>
+                </p>
+              </a>
+            </div>
+            <div class="panel-footer">
+            </div>
+          </div>
+        </div><!-- oil calculator -->
+      </div><!--/.row-->
+    </div><!--/.container-->
+  </div><!--/.page-container-->
+
+
+</body>
+</html>

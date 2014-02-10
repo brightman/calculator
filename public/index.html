@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh" ng-app="calculator">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工资计算器</title>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js">
+      <script src="controller.js"></script>
+
+      <!-- Loading Bootstrap -->
+      <script src="jquery-1.10.2.min.js"></script>
+      <script src="bootstrap/js/bootstrap.js"></script>
+      <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+      <link href="calculator.css" rel="stylesheet">
+      <script type='text/javascript'>
+        $(document).ready(function() {
+            $('[data-toggle=offcanvas]').click(function() {
+              $('.row-offcanvas').toggleClass('active');
+              });
+            });
+          </script>
+
+        </head>
+        <body>
+          <div class="page-container">
+
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">计算器之家</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row row-offcanvas row-offcanvas-left">
+                <!-- sidebar -->
+                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                  <ul class="nav">
+                    <li><a href="/salary.html">工资计算器</a></li>
+                    <li><a href="/sechouse.html">二手房交易税率</a></li>
+                    <li><a href="/supermarket.html">超市计算器</a></li>
+                    <li><a href="/oil.html">油耗计算器</a></li>
+                    <li><a href="/index.html">关于</a></li>
+                  </ul>
+                </div>
+
+
+
+
+                <div class="jumbotron col-xs-12 col-sm-9">
+                  <h1>Hello,calculator!</h1>
+                  <p>I'm a smart calculator!</p>
+                  <p>I'm a <a href="https://github.com/brightman/calculator">OPEN SOURCE</a>project!</p>
+                </div>
+              </div><!--/.row-->
+            </div><!--/.container-->
+          </div><!--/.page-container-->
+
+
+
+        </body>
+      </html>
